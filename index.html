@@ -3,235 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>English Grammar Mock Test</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-    body {
-        background: #f4f7fb;
-        color: #222;
-    }
+body {
+    background: #f4f7fb;
+    color: #222;
+}
 
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.header {
+    background: #2563eb;
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin-bottom: 8px;
+}
+
+.start-area,
+.question-card,
+.result {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+.start-area {
+    text-align: center;
+}
+
+.start-area p {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.start-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+#timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dc2626;
+}
+
+.recording-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+#recordingStatus {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+#webcamPreview {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 180px;
+    height: 135px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #2563eb;
+    background: black;
+    z-index: 1000;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: #2563eb;
+    transition: 0.3s;
+}
+
+.section-title {
+    color: #2563eb;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.question {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.option {
+    display: block;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+.option:hover,
+.option.selected {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    padding: 13px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#prevBtn {
+    background: #e5e7eb;
+    color: #222;
+}
+
+#nextBtn,
+#submitBtn {
+    background: #2563eb;
+    color: white;
+}
+
+.result {
+    display: none;
+    text-align: center;
+}
+
+.score {
+    font-size: 45px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 20px;
+}
+
+.result-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.result-box {
+    padding: 15px 25px;
+    border-radius: 10px;
+    background: #f3f4f6;
+}
+
+.correct {
+    color: #16a34a;
+}
+
+.wrong {
+    color: #dc2626;
+}
+
+#review {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.review-question {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.review-question p {
+    margin: 7px 0;
+}
+
+.restart {
+    background: #16a34a;
+    color: white;
+}
+
+@media (max-width: 600px) {
     .container {
-        max-width: 850px;
-        margin: 30px auto;
-        padding: 20px;
-    }
-
-    .header {
-        background: #2563eb;
-        color: white;
-        padding: 25px;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .header h1 {
-        margin-bottom: 8px;
-    }
-
-    .header p {
-        opacity: 0.9;
-    }
-
-    .info-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: white;
-        padding: 15px 20px;
-        border-radius: 12px;
-        margin-bottom: 15px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    }
-
-    #timer {
-        font-size: 20px;
-        font-weight: bold;
-        color: #dc2626;
-    }
-
-    .progress-container {
-        width: 100%;
-        height: 8px;
-        background: #ddd;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        overflow: hidden;
-    }
-
-    #progress {
-        height: 100%;
-        width: 0%;
-        background: #2563eb;
-        transition: 0.3s;
-    }
-
-    .question-card {
-        background: white;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-    }
-
-    .section-title {
-        color: #2563eb;
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 15px;
+        margin: 10px auto;
+        padding: 10px;
     }
 
     .question {
-        font-size: 21px;
-        font-weight: bold;
-        margin-bottom: 25px;
-        line-height: 1.5;
+        font-size: 18px;
     }
 
-    .option {
-        display: block;
-        padding: 15px;
-        border: 2px solid #ddd;
-        border-radius: 10px;
-        margin: 12px 0;
-        cursor: pointer;
-        transition: 0.2s;
+    #webcamPreview {
+        width: 120px;
+        height: 90px;
+        right: 10px;
+        bottom: 10px;
     }
 
-    .option:hover {
-        border-color: #2563eb;
-        background: #eff6ff;
+    .info-bar {
+        font-size: 14px;
     }
-
-    .option input {
-        margin-right: 10px;
-    }
-
-    .option.selected {
-        border-color: #2563eb;
-        background: #eff6ff;
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 25px;
-        gap: 10px;
-    }
-
-    button {
-        border: none;
-        padding: 13px 25px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    #prevBtn {
-        background: #e5e7eb;
-        color: #222;
-    }
-
-    #nextBtn,
-    #submitBtn {
-        background: #2563eb;
-        color: white;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-    .result {
-        display: none;
-        background: white;
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-    }
-
-    .score {
-        font-size: 45px;
-        font-weight: bold;
-        color: #2563eb;
-        margin: 20px;
-    }
-
-    .result-info {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin: 20px 0;
-    }
-
-    .result-box {
-        padding: 15px 25px;
-        border-radius: 10px;
-        background: #f3f4f6;
-    }
-
-    .correct {
-        color: #16a34a;
-    }
-
-    .wrong {
-        color: #dc2626;
-    }
-
-    #review {
-        text-align: left;
-        margin-top: 30px;
-    }
-
-    .review-question {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-
-    .review-question p {
-        margin: 7px 0;
-    }
-
-    .restart {
-        background: #16a34a;
-        color: white;
-        margin-top: 20px;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            margin: 10px auto;
-            padding: 10px;
-        }
-
-        .header h1 {
-            font-size: 25px;
-        }
-
-        .question {
-            font-size: 18px;
-        }
-
-        .info-bar {
-            font-size: 14px;
-        }
-
-        button {
-            padding: 11px 16px;
-        }
-    }
+}
 </style>
 </head>
 
@@ -241,15 +268,43 @@
 
     <div class="header">
         <h1>English Grammar Mock Test</h1>
-        <p>50 Multiple Choice Questions</p>
+        <p>50 Multiple Choice Questions • 100 Marks</p>
+    </div>
+
+    <!-- START AREA -->
+    <div class="start-area" id="startArea">
+        <h2>Ready to Start?</h2>
+        <p>
+            The mock test will begin after you allow screen, audio, and webcam permissions.
+        </p>
+        <p>
+            ⏱ Time: 30 Minutes<br>
+            📝 Questions: 50<br>
+            🎯 Marks: 100
+        </p>
+        <button class="start-btn" onclick="startMockTest()">
+            Start Mock Test
+        </button>
     </div>
 
     <!-- TEST AREA -->
-    <div id="testArea">
+    <div id="testArea" style="display:none;">
+        <div class="recording-bar">
+            <span id="recordingStatus">
+                ● Recording Active
+            </span>
+            <span>
+                Screen + Webcam + Audio
+            </span>
+        </div>
 
         <div class="info-bar">
-            <strong id="questionNumber">Question 1 of 50</strong>
-            <span id="timer">30:00</span>
+            <strong id="questionNumber">
+                Question 1 of 50
+            </strong>
+            <span id="timer">
+                30:00
+            </span>
         </div>
 
         <div class="progress-container">
@@ -257,51 +312,45 @@
         </div>
 
         <div class="question-card">
-
             <div class="section-title" id="sectionTitle"></div>
-
             <div class="question" id="questionText"></div>
-
             <div id="options"></div>
 
             <div class="buttons">
-                <button id="prevBtn" onclick="previousQuestion()">Previous</button>
-                <button id="nextBtn" onclick="nextQuestion()">Next</button>
+                <button id="prevBtn" onclick="previousQuestion()">
+                    Previous
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()">
+                    Next
+                </button>
                 <button id="submitBtn" onclick="submitTest()" style="display:none;">
                     Submit Test
                 </button>
             </div>
-
         </div>
     </div>
 
+    <!-- WEBCAM PREVIEW -->
+    <video id="webcamPreview" autoplay muted playsinline style="display:none;"></video>
+
     <!-- RESULT AREA -->
     <div class="result" id="resultArea">
-
         <h1>🎉 Test Completed!</h1>
-
         <div class="score" id="score"></div>
 
         <div class="result-info">
-
             <div class="result-box">
-                <strong class="correct">Correct</strong>
-                <br>
+                <strong class="correct">Correct</strong><br>
                 <span id="correctCount"></span>
             </div>
-
             <div class="result-box">
-                <strong class="wrong">Wrong</strong>
-                <br>
+                <strong class="wrong">Wrong</strong><br>
                 <span id="wrongCount"></span>
             </div>
-
             <div class="result-box">
-                <strong>Percentage</strong>
-                <br>
+                <strong>Percentage</strong><br>
                 <span id="percentage"></span>
             </div>
-
         </div>
 
         <button class="restart" onclick="restartTest()">
@@ -309,417 +358,480 @@
         </button>
 
         <div id="review"></div>
-
     </div>
 
 </div>
 
-
 <script>
+
+/* ==========================================================================
+   =================== QUESTIONS AND ANSWERS DATA BANK ======================
+   ========================================================================== */
+
+/*
+   STRUCTURE GUIDE:
+   - q: Question string
+   - options: Array of choices [0 = Option A, 1 = Option B, 2 = Option C, 3 = Option D]
+   - answer: Index of the correct answer (0-based)
+   - section: Topic category name
+*/
 
 const questions = [
 
-/* PART A */
+    // --- PART A: PRESENT SIMPLE ---
+    {
+        q: "I ___ English every day.",
+        options: ["study", "studies", "studying", "studied"],
+        answer: 0, // Correct: study
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "She ___ to college every day.",
+        options: ["go", "goes", "going", "gone"],
+        answer: 1, // Correct: goes
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "They ___ football on Saturday.",
+        options: ["plays", "playing", "play", "played"],
+        answer: 2, // Correct: play
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "He ___ coffee every morning.",
+        options: ["drink", "drinks", "drinking", "drank"],
+        answer: 1, // Correct: drinks
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "We ___ in Nepal.",
+        options: ["lives", "living", "live", "lived"],
+        answer: 2, // Correct: live
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "Ram ___ English very well.",
+        options: ["speak", "speaks", "speaking", "spoken"],
+        answer: 1, // Correct: speaks
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "She ___ TV every evening.",
+        options: ["watch", "watches", "watching", "watched"],
+        answer: 1, // Correct: watches
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "I ___ not play cricket.",
+        options: ["does", "am", "do", "is"],
+        answer: 2, // Correct: do
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "He ___ not like tea.",
+        options: ["do", "does", "is", "has"],
+        answer: 1, // Correct: does
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "___ you speak English?",
+        options: ["Does", "Is", "Do", "Has"],
+        answer: 2, // Correct: Do
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "___ she study English?",
+        options: ["Do", "Does", "Is", "Has"],
+        answer: 1, // Correct: Does
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "He ___ his homework every day.",
+        options: ["do", "does", "doing", "did"],
+        answer: 1, // Correct: does
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "My brother ___ football.",
+        options: ["play", "plays", "playing", "played"],
+        answer: 1, // Correct: plays
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "She ___ English every morning.",
+        options: ["study", "studies", "studying", "studied"],
+        answer: 1, // Correct: studies
+        section: "Part A — Present Simple"
+    },
+    {
+        q: "They ___ to school by bus.",
+        options: ["goes", "go", "going", "gone"],
+        answer: 1, // Correct: go
+        section: "Part A — Present Simple"
+    },
 
-{
-q: "I ___ English every day.",
-options: ["study", "studies", "studying", "studied"],
-answer: 0,
-section: "Part A — Present Simple"
-},
+    // --- PART B: PRESENT CONTINUOUS ---
+    {
+        q: "I ___ English now.",
+        options: ["study", "studied", "am studying", "have studied"],
+        answer: 2, // Correct: am studying
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "She ___ खाना पकाउँदै छ।",
+        options: ["is cooking", "cooks", "has cooked", "cook"],
+        answer: 0, // Correct: is cooking
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "They ___ football now.",
+        options: ["play", "are playing", "played", "have played"],
+        answer: 1, // Correct: are playing
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "He ___ a book at the moment.",
+        options: ["reads", "is reading", "read", "has read"],
+        answer: 1, // Correct: is reading
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "We ___ English right now.",
+        options: ["are learning", "learn", "learned", "have learned"],
+        answer: 0, // Correct: are learning
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "She ___ TV now.",
+        options: ["watches", "watched", "is watching", "has watched"],
+        answer: 2, // Correct: is watching
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "I ___ not sleeping now.",
+        options: ["am", "is", "do", "have"],
+        answer: 0, // Correct: am
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "He ___ not working today.",
+        options: ["are", "is", "does", "has"],
+        answer: 1, // Correct: is
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "___ you studying English?",
+        options: ["Do", "Does", "Are", "Have"],
+        answer: 2, // Correct: Are
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "___ she cooking food?",
+        options: ["Is", "Does", "Has", "Do"],
+        answer: 0, // Correct: Is
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "Look! The baby ___.",
+        options: ["sleeps", "slept", "is sleeping", "has slept"],
+        answer: 2, // Correct: is sleeping
+        section: "Part B — Present Continuous"
+    },
+    {
+        q: "Listen! Someone ___ at the door.",
+        options: ["knocks", "knocked", "is knocking", "has knocked"],
+        answer: 2, // Correct: is knocking
+        section: "Part B — Present Continuous"
+    },
 
-{
-q: "She ___ to college every day.",
-options: ["go", "goes", "going", "gone"],
-answer: 1,
-section: "Part A — Present Simple"
-},
+    // --- PART C: PRESENT PERFECT ---
+    {
+        q: "I ___ my homework.",
+        options: ["have finished", "am finishing", "finish", "finished"],
+        answer: 0, // Correct: have finished
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "She ___ her work.",
+        options: ["has finished", "have finished", "is finish", "finishes"],
+        answer: 0, // Correct: has finished
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "They ___ to Kathmandu.",
+        options: ["has gone", "have gone", "are go", "went"],
+        answer: 1, // Correct: have gone
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "He ___ his food.",
+        options: ["have eaten", "has eaten", "is eating", "eats"],
+        answer: 1, // Correct: has eaten
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "We ___ this movie before.",
+        options: ["have seen", "has seen", "are seeing", "see"],
+        answer: 0, // Correct: have seen
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "She ___ a new phone.",
+        options: ["have bought", "has bought", "is buy", "buys"],
+        answer: 1, // Correct: has bought
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "I ___ never ___ sushi.",
+        options: ["has / eaten", "have / eaten", "am / eating", "do / eat"],
+        answer: 1, // Correct: have / eaten
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "He ___ not finished his homework yet.",
+        options: ["have", "has", "is", "does"],
+        answer: 1, // Correct: has
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "___ you finished your work?",
+        options: ["Has", "Does", "Have", "Are"],
+        answer: 2, // Correct: Have
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "___ she gone home?",
+        options: ["Have", "Has", "Is", "Does"],
+        answer: 1, // Correct: Has
+        section: "Part C — Present Perfect"
+    },
+    {
+        q: "They ___ already eaten lunch.",
+        options: ["has", "have", "are", "do"],
+        answer: 1, // Correct: have
+        section: "Part C — Present Perfect"
+    },
 
-{
-q: "They ___ football on Saturday.",
-options: ["plays", "playing", "play", "played"],
-answer: 2,
-section: "Part A — Present Simple"
-},
-
-{
-q: "He ___ coffee every morning.",
-options: ["drink", "drinks", "drinking", "drank"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "We ___ in Nepal.",
-options: ["lives", "living", "live", "lived"],
-answer: 2,
-section: "Part A — Present Simple"
-},
-
-{
-q: "Ram ___ English very well.",
-options: ["speak", "speaks", "speaking", "spoken"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "She ___ TV every evening.",
-options: ["watch", "watches", "watching", "watched"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "I ___ not play cricket.",
-options: ["does", "am", "do", "is"],
-answer: 2,
-section: "Part A — Present Simple"
-},
-
-{
-q: "He ___ not like tea.",
-options: ["do", "does", "is", "has"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "___ you speak English?",
-options: ["Does", "Is", "Do", "Has"],
-answer: 2,
-section: "Part A — Present Simple"
-},
-
-{
-q: "___ she study English?",
-options: ["Do", "Does", "Is", "Has"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "He ___ his homework every day.",
-options: ["do", "does", "doing", "did"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "My brother ___ football.",
-options: ["play", "plays", "playing", "played"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "She ___ English every morning.",
-options: ["study", "studies", "studying", "studied"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-{
-q: "They ___ to school by bus.",
-options: ["goes", "go", "going", "gone"],
-answer: 1,
-section: "Part A — Present Simple"
-},
-
-/* PART B */
-
-{
-q: "I ___ English now.",
-options: ["study", "studied", "am studying", "have studied"],
-answer: 2,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "She ___ खाना पकाउँदै छ।",
-options: ["is cooking", "cooks", "has cooked", "cook"],
-answer: 0,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "They ___ football now.",
-options: ["play", "are playing", "played", "have played"],
-answer: 1,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "He ___ a book at the moment.",
-options: ["reads", "is reading", "read", "has read"],
-answer: 1,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "We ___ English right now.",
-options: ["are learning", "learn", "learned", "have learned"],
-answer: 0,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "She ___ TV now.",
-options: ["watches", "watched", "is watching", "has watched"],
-answer: 2,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "I ___ not sleeping now.",
-options: ["am", "is", "do", "have"],
-answer: 0,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "He ___ not working today.",
-options: ["are", "is", "does", "has"],
-answer: 1,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "___ you studying English?",
-options: ["Do", "Does", "Are", "Have"],
-answer: 2,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "___ she cooking food?",
-options: ["Is", "Does", "Has", "Do"],
-answer: 0,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "Look! The baby ___.",
-options: ["sleeps", "slept", "is sleeping", "has slept"],
-answer: 2,
-section: "Part B — Present Continuous"
-},
-
-{
-q: "Listen! Someone ___ at the door.",
-options: ["knocks", "knocked", "is knocking", "has knocked"],
-answer: 2,
-section: "Part B — Present Continuous"
-},
-
-/* PART C */
-
-{
-q: "I ___ my homework.",
-options: ["have finished", "am finishing", "finish", "finished"],
-answer: 0,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "She ___ her work.",
-options: ["has finished", "have finished", "is finish", "finishes"],
-answer: 0,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "They ___ to Kathmandu.",
-options: ["has gone", "have gone", "are go", "went"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "He ___ his food.",
-options: ["have eaten", "has eaten", "is eating", "eats"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "We ___ this movie before.",
-options: ["have seen", "has seen", "are seeing", "see"],
-answer: 0,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "She ___ a new phone.",
-options: ["have bought", "has bought", "is buy", "buys"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "I ___ never ___ sushi.",
-options: ["has / eaten", "have / eaten", "am / eating", "do / eat"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "He ___ not finished his homework yet.",
-options: ["have", "has", "is", "does"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "___ you finished your work?",
-options: ["Has", "Does", "Have", "Are"],
-answer: 2,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "___ she gone home?",
-options: ["Have", "Has", "Is", "Does"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-{
-q: "They ___ already eaten lunch.",
-options: ["has", "have", "are", "do"],
-answer: 1,
-section: "Part C — Present Perfect"
-},
-
-/* PART D */
-
-{
-q: "I ___ English for two hours.",
-options: ["have been studying", "am studying", "study", "studied"],
-answer: 0,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "She ___ since morning.",
-options: ["has been working", "have been working", "is work", "works"],
-answer: 0,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "They ___ football for three hours.",
-options: ["has been playing", "have been playing", "are play", "played"],
-answer: 1,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "He ___ English since January.",
-options: ["has been learning", "have been learning", "is learn", "learns"],
-answer: 0,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "We ___ here for an hour.",
-options: ["have been waiting", "has been waiting", "are wait", "waited"],
-answer: 0,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "She ___ for two hours.",
-options: ["has been studying", "have been studying", "is study", "studies"],
-answer: 0,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "I ___ not been sleeping well lately.",
-options: ["has", "have", "am", "do"],
-answer: 1,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "He ___ not been working since Monday.",
-options: ["have", "has", "is", "does"],
-answer: 1,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "___ you been studying English for two hours?",
-options: ["Has", "Have", "Are", "Do"],
-answer: 1,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "___ she been working since morning?",
-options: ["Have", "Does", "Has", "Is"],
-answer: 2,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "Since is used with:",
-options: [
-    "a period of time",
-    "a starting point",
-    "an object",
-    "a person"
-],
-answer: 1,
-section: "Part D — Present Perfect Continuous"
-},
-
-{
-q: "For is used with:",
-options: [
-    "a starting point",
-    "a period/duration of time",
-    "a name",
-    "a place"
-],
-answer: 1,
-section: "Part D — Present Perfect Continuous"
-}
+    // --- PART D: PRESENT PERFECT CONTINUOUS ---
+    {
+        q: "I ___ English for two hours.",
+        options: ["have been studying", "am studying", "study", "studied"],
+        answer: 0, // Correct: have been studying
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "She ___ since morning.",
+        options: ["has been working", "have been working", "is work", "works"],
+        answer: 0, // Correct: has been working
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "They ___ football for three hours.",
+        options: ["has been playing", "have been playing", "are play", "played"],
+        answer: 1, // Correct: have been playing
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "He ___ English since January.",
+        options: ["has been learning", "have been learning", "is learn", "learns"],
+        answer: 0, // Correct: has been learning
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "We ___ here for an hour.",
+        options: ["have been waiting", "has been waiting", "are wait", "waited"],
+        answer: 0, // Correct: have been waiting
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "She ___ for two hours.",
+        options: ["has been studying", "have been studying", "is study", "studies"],
+        answer: 0, // Correct: has been studying
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "I ___ not been sleeping well lately.",
+        options: ["has", "have", "am", "do"],
+        answer: 1, // Correct: have
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "He ___ not been working since Monday.",
+        options: ["have", "has", "is", "does"],
+        answer: 1, // Correct: has
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "___ you been studying English for two hours?",
+        options: ["Has", "Have", "Are", "Do"],
+        answer: 1, // Correct: Have
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "___ she been working since morning?",
+        options: ["Have", "Does", "Has", "Is"],
+        answer: 2, // Correct: Has
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "Since is used with:",
+        options: ["a period of time", "a starting point", "an object", "a person"],
+        answer: 1, // Correct: a starting point
+        section: "Part D — Present Perfect Continuous"
+    },
+    {
+        q: "For is used with:",
+        options: ["a starting point", "a period/duration of time", "a name", "a place"],
+        answer: 1, // Correct: a period/duration of time
+        section: "Part D — Present Perfect Continuous"
+    }
 
 ];
 
+/* ==========================================================================
+   ======================= END OF QUESTIONS DATA BANK ======================
+   ========================================================================== */
 
+/* TEST VARIABLES */
 let currentQuestion = 0;
 let userAnswers = new Array(questions.length).fill(null);
-
 let timeLeft = 30 * 60;
 let timerInterval;
 
+/* RECORDING VARIABLES */
+let screenStream = null;
+let webcamStream = null;
+let micAudioStream = null;
+let mixedStream = null;
+let mediaRecorder = null;
+let recordedChunks = [];
+let recordingStarted = false;
+
+/* START MOCK TEST AND INITIATE ALL RECORDINGS */
+async function startMockTest() {
+    try {
+        document.getElementById("startArea").style.display = "none";
+
+        /* 1. SCREEN RECORDING PERMISSION (Include system audio if supported) */
+        screenStream = await navigator.mediaDevices.getDisplayMedia({
+            video: true,
+            audio: true
+        });
+
+        /* 2. WEBCAM & MICROPHONE SOUND RECORDING PERMISSION */
+        const webcamAndMicStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+        });
+
+        /* Separate video and mic audio tracks */
+        webcamStream = new MediaStream(webcamAndMicStream.getVideoTracks());
+        micAudioStream = new MediaStream(webcamAndMicStream.getAudioTracks());
+
+        /* SHOW WEBCAM PREVIEW */
+        const webcamPreview = document.getElementById("webcamPreview");
+        webcamPreview.srcObject = webcamStream;
+        webcamPreview.style.display = "block";
+
+        /* 3. COMBINE SCREEN + WEBCAM + SOUND/MICROPHONE TRACKS */
+        const tracks = [
+            ...screenStream.getVideoTracks(),
+            ...screenStream.getAudioTracks(),
+            ...webcamStream.getVideoTracks(),
+            ...micAudioStream.getAudioTracks()
+        ];
+
+        mixedStream = new MediaStream(tracks);
+        recordedChunks = [];
+
+        /* CREATE MEDIA RECORDER */
+        mediaRecorder = new MediaRecorder(mixedStream);
+
+        mediaRecorder.ondataavailable = function(event) {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+            }
+        };
+
+        mediaRecorder.onstop = saveRecording;
+        mediaRecorder.start(1000);
+        recordingStarted = true;
+
+        /* AUTOMATICALLY STOP IF USER ENDS SCREEN SHARE VIA BROWSER UI */
+        screenStream.getVideoTracks()[0].addEventListener("ended", function() {
+            if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop();
+            }
+        });
+
+        /* DISPLAY TEST INTERFACE */
+        document.getElementById("testArea").style.display = "block";
+
+        loadQuestion();
+        startTimer();
+
+    } catch (error) {
+        console.error("Permission error: ", error);
+        alert("Screen, Webcam, and Microphone permissions are required to start the test. Please permit access and try again.");
+        document.getElementById("startArea").style.display = "block";
+    }
+}
+
+/* DOWNLOAD RECORDED FILE */
+function saveRecording() {
+    if (recordedChunks.length === 0) return;
+
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "english-grammar-mock-test-recording.webm";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(function() {
+        URL.revokeObjectURL(url);
+    }, 1000);
+}
+
+/* STOP ALL MEDIA RECORDINGS */
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+    }
+
+    if (screenStream) {
+        screenStream.getTracks().forEach(track => track.stop());
+    }
+
+    if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+    }
+
+    if (micAudioStream) {
+        micAudioStream.getTracks().forEach(track => track.stop());
+    }
+
+    document.getElementById("webcamPreview").style.display = "none";
+    recordingStarted = false;
+    document.getElementById("recordingStatus").textContent = "Recording Stopped";
+}
 
 /* LOAD QUESTION */
-
 function loadQuestion() {
-
     const question = questions[currentQuestion];
 
-    document.getElementById("questionNumber").textContent =
-        `Question ${currentQuestion + 1} of ${questions.length}`;
-
-    document.getElementById("sectionTitle").textContent =
-        question.section;
-
-    document.getElementById("questionText").textContent =
-        `${currentQuestion + 1}. ${question.q}`;
+    document.getElementById("questionNumber").textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+    document.getElementById("sectionTitle").textContent = question.section;
+    document.getElementById("questionText").textContent = `${currentQuestion + 1}. ${question.q}`;
 
     const optionsContainer = document.getElementById("options");
-
     optionsContainer.innerHTML = "";
 
-    question.options.forEach((option, index) => {
-
+    question.options.forEach(function(option, index) {
         const label = document.createElement("label");
-
         label.className = "option";
 
         if (userAnswers[currentQuestion] === index) {
@@ -727,236 +839,130 @@ function loadQuestion() {
         }
 
         label.innerHTML = `
-            <input
-                type="radio"
-                name="answer"
-                value="${index}"
-                ${userAnswers[currentQuestion] === index ? "checked" : ""}
-            >
-            <strong>${String.fromCharCode(65 + index)})</strong>
-            ${option}
+            <input type="radio" name="answer" value="${index}" ${userAnswers[currentQuestion] === index ? "checked" : ""}>
+            <strong>${String.fromCharCode(65 + index)})</strong> ${option}
         `;
 
         label.onclick = function() {
-
             userAnswers[currentQuestion] = index;
-
-            document.querySelectorAll(".option")
-                .forEach(o => o.classList.remove("selected"));
-
+            document.querySelectorAll(".option").forEach(optionElement => optionElement.classList.remove("selected"));
             label.classList.add("selected");
         };
 
         optionsContainer.appendChild(label);
     });
 
-
-    /* Progress */
-
-    const progress =
-        ((currentQuestion + 1) / questions.length) * 100;
-
-    document.getElementById("progress").style.width =
-        progress + "%";
-
-
-    /* Buttons */
-
-    document.getElementById("prevBtn").style.visibility =
-        currentQuestion === 0 ? "hidden" : "visible";
+    const progress = ((currentQuestion + 1) / questions.length) * 100;
+    document.getElementById("progress").style.width = progress + "%";
+    document.getElementById("prevBtn").style.visibility = currentQuestion === 0 ? "hidden" : "visible";
 
     if (currentQuestion === questions.length - 1) {
-
         document.getElementById("nextBtn").style.display = "none";
-
         document.getElementById("submitBtn").style.display = "block";
-
     } else {
-
         document.getElementById("nextBtn").style.display = "block";
-
         document.getElementById("submitBtn").style.display = "none";
     }
 }
 
-
-/* NEXT */
-
+/* NEXT QUESTION */
 function nextQuestion() {
-
     if (currentQuestion < questions.length - 1) {
-
         currentQuestion++;
-
         loadQuestion();
     }
 }
 
-
-/* PREVIOUS */
-
+/* PREVIOUS QUESTION */
 function previousQuestion() {
-
     if (currentQuestion > 0) {
-
         currentQuestion--;
-
         loadQuestion();
     }
 }
-
 
 /* TIMER */
-
 function startTimer() {
+    clearInterval(timerInterval);
 
     timerInterval = setInterval(function() {
-
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
-
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        document.getElementById("timer").textContent =
-            `${minutes}:${seconds}`;
+        document.getElementById("timer").textContent = `${minutes}:${seconds}`;
 
         if (timeLeft <= 0) {
-
             clearInterval(timerInterval);
-
-            alert("Time is up! Your test will be submitted.");
-
+            alert("Time is up! Your test will now be submitted.");
             submitTest();
+            return;
         }
 
         timeLeft--;
-
     }, 1000);
 }
 
-
 /* SUBMIT TEST */
-
 function submitTest() {
-
     clearInterval(timerInterval);
+    stopRecording();
 
     let correct = 0;
-
-    questions.forEach((question, index) => {
-
+    questions.forEach(function(question, index) {
         if (userAnswers[index] === question.answer) {
             correct++;
         }
-
     });
 
     const wrong = questions.length - correct;
-
-    const percentage =
-        ((correct / questions.length) * 100).toFixed(2);
-
+    const percentage = ((correct / questions.length) * 100).toFixed(2);
 
     document.getElementById("testArea").style.display = "none";
-
     document.getElementById("resultArea").style.display = "block";
-
-
-    document.getElementById("score").textContent =
-        `${correct} / ${questions.length}`;
-
-    document.getElementById("correctCount").textContent =
-        correct;
-
-    document.getElementById("wrongCount").textContent =
-        wrong;
-
-    document.getElementById("percentage").textContent =
-        percentage + "%";
-
+    document.getElementById("score").textContent = `${correct} / ${questions.length}`;
+    document.getElementById("correctCount").textContent = correct;
+    document.getElementById("wrongCount").textContent = wrong;
+    document.getElementById("percentage").textContent = percentage + "%";
 
     showReview();
 }
 
-
-/* REVIEW */
-
+/* ANSWER REVIEW */
 function showReview() {
-
     const review = document.getElementById("review");
-
     review.innerHTML = "<h2>📋 Answer Review</h2><br>";
 
-    questions.forEach((question, index) => {
-
+    questions.forEach(function(question, index) {
         const userAnswer = userAnswers[index];
-
-        const isCorrect =
-            userAnswer === question.answer;
-
-        let userText =
-            userAnswer === null
-            ? "Not answered"
-            : question.options[userAnswer];
-
-        let correctText =
-            question.options[question.answer];
+        const isCorrect = userAnswer === question.answer;
+        const userText = userAnswer === null ? "Not answered" : question.options[userAnswer];
+        const correctText = question.options[question.answer];
 
         const div = document.createElement("div");
-
         div.className = "review-question";
 
         div.innerHTML = `
             <strong>${index + 1}. ${question.q}</strong>
-
-            <p>
-                Your answer:
-                <span class="${isCorrect ? "correct" : "wrong"}">
-                    ${userText}
-                </span>
-            </p>
-
-            <p>
-                Correct answer:
-                <span class="correct">
-                    ${correctText}
-                </span>
-            </p>
+            <p>Your answer: <span class="${isCorrect ? "correct" : "wrong"}">${userText}</span></p>
+            <p>Correct answer: <span class="correct">${correctText}</span></p>
         `;
 
         review.appendChild(div);
     });
 }
 
-
-/* RESTART */
-
+/* RESTART TEST */
 function restartTest() {
-
     currentQuestion = 0;
-
-    userAnswers =
-        new Array(questions.length).fill(null);
-
+    userAnswers = new Array(questions.length).fill(null);
     timeLeft = 30 * 60;
 
-    document.getElementById("resultArea").style.display =
-        "none";
-
-    document.getElementById("testArea").style.display =
-        "block";
-
-    loadQuestion();
-
-    startTimer();
+    document.getElementById("resultArea").style.display = "none";
+    document.getElementById("startArea").style.display = "block";
+    document.getElementById("testArea").style.display = "none";
+    document.getElementById("timer").textContent = "30:00";
 }
-
-
-/* START */
-
-loadQuestion();
-
-startTimer();
 
 </script>
 
